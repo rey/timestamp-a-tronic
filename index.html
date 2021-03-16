@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="description" name="Timestamp-a-tronic">
+  <meta content="width=device-width" name="viewport">
+  <title>Timestamp-a-tronic</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"
+    integrity="sha512-sIqUEnRn31BgngPmHt2JenzleDDsXwYO+iyvQ46Mw6RL+udAUZj2n/u/PGY80NxRxynO7R9xIGx5LEzw4INWJQ=="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+    crossorigin="anonymous" />
+  <style type="text/css">
+    body {
+      padding: 20px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: bold;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    table {
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    h2 {
+      font-size: 28px;
+    }
+
+    h3 {
+      font-size: 22px;
+    }
+
+    code {
+      font-family: "Courier", sans-serif;
+    }
+
+    code[id]::selection {
+      background: #f6c;
+      color: #fff;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-top: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+    }
+
+    thead {
+      background-color: #ccc;
+    }
+
+    td {
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Timestamp-a-tronic</h1>
+    <p>Transform <code>Chain.ExecutionDateTime</code> into some common <a href="https://devhints.io/strftime">strftime
+        formats</a>. Use at your own risk &amp;c.</p>
+  </header>
+  <main>
+    <section>
+      <h2>Timestamp</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Example</td>
+            <td>strftime format</td>
+            <td>Raw</td>
+            <td>Copy &amp; paste</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2021-03-15T16:04:28.744118Z</td>
+            <td><code>¯\_(ツ)_/¯</code></td>
+            <td><code id="timestamp">$(Chain.ExecutionDateTime)</code></td>
+            <td><button data-clipboard-target="#timestamp">Copy to clipboard</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Time</h2>
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Example</td>
+            <td>strftime format</td>
+            <td>Raw</td>
+            <td>Copy &amp; paste</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1610</td>
+            <td>%H%M</td>
+            <td><code
+                id="timestamp-hhmm">$(Chain.ExecutionDateTime)@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%H%MOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-hhmm">Copy to clipboard</button></td>
+          </tr>
+          <tr>
+            <td>161051</td>
+            <td>%H%M%S</td>
+            <td><code
+                id="timestamp-hhmmss">$(Chain.ExecutionDateTime)@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%H%M%SOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-hhmmss">Copy to clipboard</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Date</h2>
+      <h3>This year</h3>
+      <table>
+        <thead>
+          <tr>
+            <td>Example</td>
+            <td>strftime format</td>
+            <td>Raw</td>
+            <td>Copy &amp; paste</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2021</td>
+            <td>%Y</td>
+            <td><code
+                id="timestamp-yyyy">$(Chain.ExecutionDateTime)@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%YOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-yyyy">Copy to clipboard</button></td>
+          </tr>
+          <tr>
+            <td>032021</td>
+            <td>%m%Y</td>
+            <td><code
+                id="timestamp-mmyyyy">$(Chain.ExecutionDateTime)@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%m%YOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-mmyyyy">Copy to clipboard</button></td>
+          </tr>
+          <tr>
+            <td>15032021</td>
+            <td>%d%m%Y</td>
+            <td><code
+                id="timestamp-ddmmyyyy">$(Chain.ExecutionDateTime)@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%d%m%YOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-ddmmyyyy">Copy to clipboard</button></td>
+          </tr>
+          <tr>
+            <td>03152021</td>
+            <td>%m%d%Y</td>
+            <td><code
+                id="timestamp-mmddyyyy">$(Chain.ExecutionDateTime)@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%m%d%YOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-mmddyyyy">Copy to clipboard</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Last year</h3>
+      <table>
+        <thead>
+          <tr>
+            <td>Example</td>
+            <td>strftime format</td>
+            <td>Raw</td>
+            <td>Copy &amp; paste</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2020</td>
+            <td>%Y</td>
+            <td><code
+                id="timestamp-yyyy-minus-1y">$(Chain.ExecutionDateTime)@transform{dateMathOC_SPLIT%FT%T.%fZOC_ARGsubtractOC_ARG1OC_ARGyearsOC_ARG}@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%YOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-yyyy-minus-1y">Copy to clipboard</button></td>
+          </tr>
+          <tr>
+            <td>032020</td>
+            <td>%m%Y</td>
+            <td><code
+                id="timestamp-mmyyyy-minus-1y">$(Chain.ExecutionDateTime)@transform{dateMathOC_SPLIT%FT%T.%fZOC_ARGsubtractOC_ARG1OC_ARGyearsOC_ARG}@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%m%YOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-mmyyyy-minus-1y">Copy to clipboard</button></td>
+          </tr>
+          <tr>
+            <td>15032020</td>
+            <td>%d%m%Y</td>
+            <td><code
+                id="timestamp-ddmmyyyy-minus-1y">$(Chain.ExecutionDateTime)@transform{dateMathOC_SPLIT%FT%T.%fZOC_ARGsubtractOC_ARG1OC_ARGyearsOC_ARG}@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%d%m%YOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-ddmmyyyy-minus-1y">Copy to clipboard</button></td>
+          </tr>
+          <tr>
+            <td>03152020</td>
+            <td>%m%d%Y</td>
+            <td><code
+                id="timestamp-mmddyyyy-minus-1y">$(Chain.ExecutionDateTime)@transform{dateMathOC_SPLIT%FT%T.%fZOC_ARGsubtractOC_ARG1OC_ARGyearsOC_ARG}@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%m%d%YOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-mmddyyyy-minus-1y">Copy to clipboard</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>The year before last</h3>
+      <table>
+        <thead>
+          <tr>
+            <td>Example</td>
+            <td>strftime format</td>
+            <td>Raw</td>
+            <td>Copy &amp; paste</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2019</td>
+            <td>%Y</td>
+            <td><code
+                id="timestamp-yyyy-minus-2y">$(Chain.ExecutionDateTime)@transform{dateMathOC_SPLIT%FT%T.%fZOC_ARGsubtractOC_ARG2OC_ARGyearsOC_ARG}@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%YOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-yyyy-minus-2y">Copy to clipboard</button></td>
+          </tr>
+          <tr>
+            <td>032019</td>
+            <td>%m%Y</td>
+            <td><code
+                id="timestamp-mmyyyy-minus-2y">$(Chain.ExecutionDateTime)@transform{dateMathOC_SPLIT%FT%T.%fZOC_ARGsubtractOC_ARG2OC_ARGyearsOC_ARG}@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%m%YOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-mmyyyy-minus-2y">Copy to clipboard</button></td>
+          </tr>
+          <tr>
+            <td>15032019</td>
+            <td>%d%m%Y</td>
+            <td><code
+                id="timestamp-ddmmyyyy-minus-2y">$(Chain.ExecutionDateTime)@transform{dateMathOC_SPLIT%FT%T.%fZOC_ARGsubtractOC_ARG2OC_ARGyearsOC_ARG}@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%d%m%YOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-ddmmyyyy-minus-2y">Copy to clipboard</button></td>
+          </tr>
+          <tr>
+            <td>03152019</td>
+            <td>%m%d%Y</td>
+            <td><code
+                id="timestamp-mmddyyyy-minus-2y">$(Chain.ExecutionDateTime)@transform{dateMathOC_SPLIT%FT%T.%fZOC_ARGsubtractOC_ARG2OC_ARGyearsOC_ARG}@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%m%d%YOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-mmddyyyy-minus-2y">Copy to clipboard</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Rey</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Example</td>
+            <td>strftime format</td>
+            <td>Raw</td>
+            <td>Copy &amp; paste</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>15032021@160750</td>
+            <td>%d%m%Y@%H%M%S</td>
+            <td><code
+                id="timestamp-ddmmyyyyathhmmss">$(Chain.ExecutionDateTime)@transform{parseDateTimeOC_SPLIT%FT%T.%fZOC_ARG%d%m%Y@%H%M%SOC_ARGOC_ARGOC_ARG}</code>
+            </td>
+            <td><button data-clipboard-target="#timestamp-ddmmyyyyathhmmss">Copy to clipboard</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer>
+    <p>Drink more water 🏄‍♂️</p>
+  </footer>
+  <script type="text/javascript">
+    new ClipboardJS('button');
+  </script>
+</body>
+</html>
